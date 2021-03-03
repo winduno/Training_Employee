@@ -3,6 +3,7 @@ package com.example.employee.Model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -23,10 +24,9 @@ public class Cantin {
     private Building building;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCantinDish")
-    private CantinDish cantinDish;
+    @JoinColumn(name = "idMenu")
+    private Menu menu;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idLunchRegisterEmployee")
-    private LunchRegisterEmployee lunchRegisterEmployee;
+    @OneToMany(mappedBy = "cantin")
+    private Set<LunchRegisterEmployee> lunchRegisterEmployee;
 }

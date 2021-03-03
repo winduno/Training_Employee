@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -35,7 +36,6 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     private List<Post> posts;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idLunchRegisterEmployee")
-    private LunchRegisterEmployee lunchRegisterEmployee;
+    @OneToMany(mappedBy = "employee")
+    private Set<LunchRegisterEmployee> lunchRegisterEmployee;
 }

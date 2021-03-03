@@ -15,12 +15,15 @@ public class LunchRegisterEmployee {
 
     private Date date;
 
-    @OneToMany(mappedBy = "lunchRegisterEmployee")
-    private Set<Employee> employee;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idEmployee")
+    private Employee employee;
 
-    @OneToMany(mappedBy = "lunchRegisterEmployee")
-    private Set<Cantin> cantin;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCantin")
+    private Cantin cantin;
 
-    @OneToMany(mappedBy = "lunchRegisterEmployee")
-    private Set<Dish> dish;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idDish")
+    private Dish dish;
 }
