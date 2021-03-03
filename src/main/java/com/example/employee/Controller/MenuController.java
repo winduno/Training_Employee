@@ -1,7 +1,6 @@
 package com.example.employee.Controller;
 
 import com.example.employee.Model.Menu;
-import com.example.employee.Model.Menu;
 import com.example.employee.Service.Menu.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
