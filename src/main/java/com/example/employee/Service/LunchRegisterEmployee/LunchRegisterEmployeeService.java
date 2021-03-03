@@ -1,0 +1,35 @@
+package com.example.employee.Service.LunchRegisterEmployee;
+
+import com.example.employee.Model.LunchRegisterEmployee;
+import com.example.employee.Repository.LunchRegisterEmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class LunchRegisterEmployeeService implements ILunchRegisterEmployeeService{
+
+    @Autowired
+    private LunchRegisterEmployeeRepository lunchRegisterEmployeeRepository;
+
+    @Override
+    public Iterable<LunchRegisterEmployee> getAll() {
+        return this.lunchRegisterEmployeeRepository.findAll();
+    }
+
+    @Override
+    public LunchRegisterEmployee save(LunchRegisterEmployee lunchRegisterEmployee) {
+        return this.lunchRegisterEmployeeRepository.save(lunchRegisterEmployee);
+    }
+
+    @Override
+    public Optional<LunchRegisterEmployee> findById(Long id) {
+        return this.lunchRegisterEmployeeRepository.findById(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        this.lunchRegisterEmployeeRepository.deleteById(id);
+    }
+}

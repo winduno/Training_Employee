@@ -15,9 +15,12 @@ public class Menu {
 
     private Date date;
 
-    @OneToMany(mappedBy = "menu")
-    private Set<Cantin> cantin;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCantin")
+    private Cantin cantin;
 
-    @OneToMany(mappedBy = "menu")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "menu_dish", joinColumns = @JoinColumn(name = "idMenu"),
+            inverseJoinColumns = @JoinColumn(name = "idDish"))
     private Set<Dish> dish;
 }

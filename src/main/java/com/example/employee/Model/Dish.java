@@ -16,10 +16,10 @@ public class Dish {
 
     private Double price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idMenu")
-    private Menu menu;
-
     @OneToMany(mappedBy = "dish")
     private Set<LunchRegisterEmployee> lunchRegisterEmployee;
+
+    @ManyToMany(mappedBy = "dish")
+    private Set<Menu> menus;
+
 }

@@ -23,9 +23,8 @@ public class Cantin {
     @JoinColumn(name = "idBuilding")
     private Building building;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idMenu")
-    private Menu menu;
+    @OneToMany(mappedBy = "cantin")
+    private Set<Menu> menu;
 
     @OneToMany(mappedBy = "cantin")
     private Set<LunchRegisterEmployee> lunchRegisterEmployee;
