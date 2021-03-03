@@ -14,7 +14,7 @@ public class Card {
 
     private String number;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idEmployee")
     private Employee employee;
 }

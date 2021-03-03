@@ -14,4 +14,10 @@ public class CantinDish {
     private Long id;
 
     private Date date;
+
+    @OneToMany(mappedBy = "cantinDish")
+    private Set<Cantin> cantin;
+
+    @OneToMany(mappedBy = "cantinDish")
+    private Set<Dish> dish;
 }

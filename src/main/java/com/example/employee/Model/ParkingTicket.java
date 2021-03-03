@@ -20,7 +20,7 @@ public class ParkingTicket {
 
     private String motorBrand;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idEmployee")
     private Employee employee;
 }

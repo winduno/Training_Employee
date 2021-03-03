@@ -18,11 +18,15 @@ public class Cantin {
 
     private Double outcome;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idBuilding")
     private Building building;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idCantinDish")
     private CantinDish cantinDish;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idLunchRegisterEmployee")
+    private LunchRegisterEmployee lunchRegisterEmployee;
 }

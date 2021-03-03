@@ -15,7 +15,11 @@ public class Dish {
 
     private Double price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idCantinDish")
-    private CantinDish idCantinDish;
+    private CantinDish cantinDish;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idLunchRegisterEmployee")
+    private LunchRegisterEmployee lunchRegisterEmployee;
 }

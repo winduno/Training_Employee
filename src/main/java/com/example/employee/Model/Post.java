@@ -18,11 +18,11 @@ public class Post {
 
     private Date recieveFromEmployeeDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idEmployee")
     private Employee employee;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idShipper")
     private Shipper shipper;
 }

@@ -19,7 +19,23 @@ public class Employee {
 
     private String department;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idBuilding")
     private Building building;
+
+    @OneToOne(mappedBy = "employee")
+    private Card card;
+
+    @OneToOne(mappedBy = "employee")
+    private Guess guess;
+
+    @OneToOne(mappedBy = "employee")
+    private ParkingTicket parkingTicket;
+
+    @OneToMany(mappedBy = "employee")
+    private List<Post> posts;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idLunchRegisterEmployee")
+    private LunchRegisterEmployee lunchRegisterEmployee;
 }

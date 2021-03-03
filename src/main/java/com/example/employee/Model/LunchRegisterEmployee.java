@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Data
@@ -14,15 +15,12 @@ public class LunchRegisterEmployee {
 
     private Date date;
 
-    @OneToOne
-    @JoinColumn(name = "idEmployee")
-    private Employee employee;
+    @OneToMany(mappedBy = "lunchRegisterEmployee")
+    private Set<Employee> employee;
 
-    @OneToOne
-    @JoinColumn(name = "idCantin")
-    private Cantin cantin;
+    @OneToMany(mappedBy = "lunchRegisterEmployee")
+    private Set<Cantin> cantin;
 
-    @OneToOne
-    @JoinColumn(name = "idDish")
-    private Dish dish;
+    @OneToMany(mappedBy = "lunchRegisterEmployee")
+    private Set<Dish> dish;
 }

@@ -18,7 +18,7 @@ public class Guess {
 
     private Date date;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idEmployee")
     private Employee employee;
 }
