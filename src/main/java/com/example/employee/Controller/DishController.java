@@ -18,28 +18,29 @@ public class DishController {
     private IDishService dishService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Dish>> getAllDish(){
+    public ResponseEntity<Iterable<Dish>> getAllDish() {
         return new ResponseEntity<>(this.dishService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Dish> getDishById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Dish> getDishById(@PathVariable(name = "id") Long id) {
         Optional<Dish> optionalDish = this.dishService.findById(id);
         return optionalDish.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<Dish> addDish(@RequestBody Dish dish){
-        return new ResponseEntity<>(this.dishService.save(dish), HttpStatus.OK);
+    public ResponseEntity<Dish> addDish(@RequestBody Dish dish) {
+        this.dishService.save(dish);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Dish> deleteDishById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Dish> deleteDishById(@PathVariable(name = "id") Long id) {
         Optional<Dish> optionalDish = this.dishService.findById(id);
-        if (optionalDish.isPresent()){
+        if (optionalDish.isPresent()) {
             this.dishService.delete(id);
-            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

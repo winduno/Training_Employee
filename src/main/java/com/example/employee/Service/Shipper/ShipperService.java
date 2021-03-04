@@ -5,6 +5,7 @@ import com.example.employee.Repository.ShipperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,13 +15,13 @@ public class ShipperService implements IShipperService{
     private ShipperRepository shipperRepository;
 
     @Override
-    public Iterable<Shipper> getAll() {
+    public List<Shipper> getAll() {
         return this.shipperRepository.findAll();
     }
 
     @Override
-    public Shipper save(Shipper shipper) {
-        return this.shipperRepository.save(shipper);
+    public void save(Shipper shipper) {
+        this.shipperRepository.save(shipper);
     }
 
     @Override
@@ -32,4 +33,6 @@ public class ShipperService implements IShipperService{
     public void delete(Long id) {
         this.shipperRepository.deleteById(id);
     }
+
+
 }

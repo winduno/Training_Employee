@@ -18,28 +18,29 @@ public class EmployeeController {
     private IEmployeeService employeeService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Employee>> getAllEmployee(){
+    public ResponseEntity<Iterable<Employee>> getAllEmployee() {
         return new ResponseEntity<>(this.employeeService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable(name = "id") Long id) {
         Optional<Employee> optionalEmployee = this.employeeService.findById(id);
         return optionalEmployee.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
-        return new ResponseEntity<>(this.employeeService.save(employee), HttpStatus.OK);
+    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
+        this.employeeService.save(employee);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Employee> deleteEmployeeById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Employee> deleteEmployeeById(@PathVariable(name = "id") Long id) {
         Optional<Employee> optionalEmployee = this.employeeService.findById(id);
-        if (optionalEmployee.isPresent()){
+        if (optionalEmployee.isPresent()) {
             this.employeeService.delete(id);
-            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

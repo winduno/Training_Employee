@@ -18,28 +18,29 @@ public class LunchRegisterEmployeeController {
     private ILunchRegisterEmployeeService lunchRegisterEmployeeService;
 
     @GetMapping
-    public ResponseEntity<Iterable<LunchRegisterEmployee>> getAllLunchRegisterEmployee(){
+    public ResponseEntity<Iterable<LunchRegisterEmployee>> getAllLunchRegisterEmployee() {
         return new ResponseEntity<>(this.lunchRegisterEmployeeService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LunchRegisterEmployee> getLunchRegisterEmployeeById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<LunchRegisterEmployee> getLunchRegisterEmployeeById(@PathVariable(name = "id") Long id) {
         Optional<LunchRegisterEmployee> optionalLunchRegisterEmployee = this.lunchRegisterEmployeeService.findById(id);
         return optionalLunchRegisterEmployee.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<LunchRegisterEmployee> addLunchRegisterEmployee(@RequestBody LunchRegisterEmployee lunchRegisterEmployee){
-        return new ResponseEntity<>(this.lunchRegisterEmployeeService.save(lunchRegisterEmployee), HttpStatus.OK);
+    public ResponseEntity<LunchRegisterEmployee> addLunchRegisterEmployee(@RequestBody LunchRegisterEmployee lunchRegisterEmployee) {
+        this.lunchRegisterEmployeeService.save(lunchRegisterEmployee);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<LunchRegisterEmployee> deleteLunchRegisterEmployeeById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<LunchRegisterEmployee> deleteLunchRegisterEmployeeById(@PathVariable(name = "id") Long id) {
         Optional<LunchRegisterEmployee> optionalLunchRegisterEmployee = this.lunchRegisterEmployeeService.findById(id);
-        if (optionalLunchRegisterEmployee.isPresent()){
+        if (optionalLunchRegisterEmployee.isPresent()) {
             this.lunchRegisterEmployeeService.delete(id);
-            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

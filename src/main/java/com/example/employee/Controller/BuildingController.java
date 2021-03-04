@@ -18,28 +18,29 @@ public class BuildingController {
     private IBuildingService buildingService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Building>> getAllBuilding(){
+    public ResponseEntity<Iterable<Building>> getAllBuilding() {
         return new ResponseEntity<>(this.buildingService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Building> getBuildingById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Building> getBuildingById(@PathVariable(name = "id") Long id) {
         Optional<Building> optionalBuilding = this.buildingService.findById(id);
         return optionalBuilding.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<Building> addBuilding(@RequestBody Building building){
-        return new ResponseEntity<>(this.buildingService.save(building), HttpStatus.OK);
+    public ResponseEntity<Building> addBuilding(@RequestBody Building building) {
+        this.buildingService.save(building);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Building> deleteBuildingById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Building> deleteBuildingById(@PathVariable(name = "id") Long id) {
         Optional<Building> optionalBuilding = this.buildingService.findById(id);
-        if (optionalBuilding.isPresent()){
+        if (optionalBuilding.isPresent()) {
             this.buildingService.delete(id);
-            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

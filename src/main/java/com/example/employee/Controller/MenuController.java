@@ -18,28 +18,29 @@ public class MenuController {
     private IMenuService menuService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Menu>> getAllMenu(){
+    public ResponseEntity<Iterable<Menu>> getAllMenu() {
         return new ResponseEntity<>(this.menuService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Menu> getMenuById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Menu> getMenuById(@PathVariable(name = "id") Long id) {
         Optional<Menu> optionalMenu = this.menuService.findById(id);
         return optionalMenu.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<Menu> addMenu(@RequestBody Menu menu){
-        return new ResponseEntity<>(this.menuService.save(menu), HttpStatus.OK);
+    public ResponseEntity<Menu> addMenu(@RequestBody Menu menu) {
+        this.menuService.save(menu);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Menu> deleteMenuById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Menu> deleteMenuById(@PathVariable(name = "id") Long id) {
         Optional<Menu> optionalMenu = this.menuService.findById(id);
-        if (optionalMenu.isPresent()){
+        if (optionalMenu.isPresent()) {
             this.menuService.delete(id);
-            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -1,5 +1,6 @@
 package com.example.employee.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@Table(name = "building")
 public class Building {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

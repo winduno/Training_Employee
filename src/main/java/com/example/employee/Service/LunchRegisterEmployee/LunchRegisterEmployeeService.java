@@ -5,6 +5,7 @@ import com.example.employee.Repository.LunchRegisterEmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,13 +15,13 @@ public class LunchRegisterEmployeeService implements ILunchRegisterEmployeeServi
     private LunchRegisterEmployeeRepository lunchRegisterEmployeeRepository;
 
     @Override
-    public Iterable<LunchRegisterEmployee> getAll() {
+    public List<LunchRegisterEmployee> getAll() {
         return this.lunchRegisterEmployeeRepository.findAll();
     }
 
     @Override
-    public LunchRegisterEmployee save(LunchRegisterEmployee lunchRegisterEmployee) {
-        return this.lunchRegisterEmployeeRepository.save(lunchRegisterEmployee);
+    public void save(LunchRegisterEmployee lunchRegisterEmployee) {
+        this.lunchRegisterEmployeeRepository.save(lunchRegisterEmployee);
     }
 
     @Override

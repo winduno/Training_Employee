@@ -18,28 +18,29 @@ public class ParkingTicketController {
     private IParkingTicketService parkingTicketService;
 
     @GetMapping
-    public ResponseEntity<Iterable<ParkingTicket>> getAllParkingTicket(){
+    public ResponseEntity<Iterable<ParkingTicket>> getAllParkingTicket() {
         return new ResponseEntity<>(this.parkingTicketService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ParkingTicket> getParkingTicketById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<ParkingTicket> getParkingTicketById(@PathVariable(name = "id") Long id) {
         Optional<ParkingTicket> optionalParkingTicket = this.parkingTicketService.findById(id);
         return optionalParkingTicket.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<ParkingTicket> addParkingTicket(@RequestBody ParkingTicket parkingTicket){
-        return new ResponseEntity<>(this.parkingTicketService.save(parkingTicket), HttpStatus.OK);
+    public ResponseEntity<ParkingTicket> addParkingTicket(@RequestBody ParkingTicket parkingTicket) {
+        this.parkingTicketService.save(parkingTicket);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ParkingTicket> deleteParkingTicketById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<ParkingTicket> deleteParkingTicketById(@PathVariable(name = "id") Long id) {
         Optional<ParkingTicket> optionalParkingTicket = this.parkingTicketService.findById(id);
-        if (optionalParkingTicket.isPresent()){
+        if (optionalParkingTicket.isPresent()) {
             this.parkingTicketService.delete(id);
-            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

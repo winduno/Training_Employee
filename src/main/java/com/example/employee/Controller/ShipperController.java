@@ -18,28 +18,29 @@ public class ShipperController {
     private IShipperService shipperService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Shipper>> getAllShipper(){
+    public ResponseEntity<Iterable<Shipper>> getAllShipper() {
         return new ResponseEntity<>(this.shipperService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Shipper> getShipperById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Shipper> getShipperById(@PathVariable(name = "id") Long id) {
         Optional<Shipper> optionalShipper = this.shipperService.findById(id);
         return optionalShipper.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<Shipper> addShipper(@RequestBody Shipper shipper){
-        return new ResponseEntity<>(this.shipperService.save(shipper), HttpStatus.OK);
+    public ResponseEntity<Shipper> addShipper(@RequestBody Shipper shipper) {
+        this.shipperService.save(shipper);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Shipper> deleteShipperById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Shipper> deleteShipperById(@PathVariable(name = "id") Long id) {
         Optional<Shipper> optionalShipper = this.shipperService.findById(id);
-        if (optionalShipper.isPresent()){
+        if (optionalShipper.isPresent()) {
             this.shipperService.delete(id);
-            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

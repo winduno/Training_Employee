@@ -5,6 +5,7 @@ import com.example.employee.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,13 +15,13 @@ public class EmployeeService implements IEmployeeService{
     private EmployeeRepository employeeRepository;
 
     @Override
-    public Iterable<Employee> getAll() {
+    public List<Employee> getAll() {
         return this.employeeRepository.findAll();
     }
 
     @Override
-    public Employee save(Employee employee) {
-        return this.employeeRepository.save(employee);
+    public void save(Employee employee) {
+        this.employeeRepository.save(employee);
     }
 
     @Override

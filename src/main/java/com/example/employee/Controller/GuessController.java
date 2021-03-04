@@ -19,28 +19,29 @@ public class GuessController {
     private IGuessService guessService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Guess>> getAllGuess(){
+    public ResponseEntity<Iterable<Guess>> getAllGuess() {
         return new ResponseEntity<>(this.guessService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Guess> getGuessById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Guess> getGuessById(@PathVariable(name = "id") Long id) {
         Optional<Guess> optionalGuess = this.guessService.findById(id);
         return optionalGuess.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<Guess> addGuess(@RequestBody Guess guess){
-        return new ResponseEntity<>(this.guessService.save(guess), HttpStatus.OK);
+    public ResponseEntity<Guess> addGuess(@RequestBody Guess guess) {
+        this.guessService.save(guess);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Guess> deleteGuessById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Guess> deleteGuessById(@PathVariable(name = "id") Long id) {
         Optional<Guess> optionalGuess = this.guessService.findById(id);
-        if (optionalGuess.isPresent()){
+        if (optionalGuess.isPresent()) {
             this.guessService.delete(id);
-            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

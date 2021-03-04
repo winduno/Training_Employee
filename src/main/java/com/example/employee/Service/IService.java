@@ -1,11 +1,12 @@
 package com.example.employee.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IService<T> {
-    Iterable<T> getAll();
+    List<T> getAll();
 
-    T save(T t);
+    void save(T t);
 
     Optional<T> findById(Long id);
 

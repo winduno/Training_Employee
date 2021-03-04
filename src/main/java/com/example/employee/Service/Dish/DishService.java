@@ -5,6 +5,7 @@ import com.example.employee.Repository.DishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,13 +15,13 @@ public class DishService implements IDishService{
     private DishRepository dishRepository;
 
     @Override
-    public Iterable<Dish> getAll() {
+    public List<Dish> getAll() {
         return this.dishRepository.findAll();
     }
 
     @Override
-    public Dish save(Dish dish) {
-        return this.dishRepository.save(dish);
+    public void save(Dish dish) {
+        this.dishRepository.save(dish);
     }
 
     @Override

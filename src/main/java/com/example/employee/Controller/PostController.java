@@ -18,28 +18,29 @@ public class PostController {
     private IPostService postService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Post>> getAllPost(){
+    public ResponseEntity<Iterable<Post>> getAllPost() {
         return new ResponseEntity<>(this.postService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Post> getPostById(@PathVariable(name = "id") Long id) {
         Optional<Post> optionalPost = this.postService.findById(id);
         return optionalPost.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<Post> addPost(@RequestBody Post post){
-        return new ResponseEntity<>(this.postService.save(post), HttpStatus.OK);
+    public ResponseEntity<Post> addPost(@RequestBody Post post) {
+        this.postService.save(post);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Post> deletePostById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Post> deletePostById(@PathVariable(name = "id") Long id) {
         Optional<Post> optionalPost = this.postService.findById(id);
-        if (optionalPost.isPresent()){
+        if (optionalPost.isPresent()) {
             this.postService.delete(id);
-            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

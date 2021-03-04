@@ -18,28 +18,29 @@ public class CantinController {
     private ICantinService cantinService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Cantin>> getAllCantin(){
+    public ResponseEntity<Iterable<Cantin>> getAllCantin() {
         return new ResponseEntity<>(this.cantinService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cantin> getCantinById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Cantin> getCantinById(@PathVariable(name = "id") Long id) {
         Optional<Cantin> optionalCantin = this.cantinService.findById(id);
         return optionalCantin.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<Cantin> addCantin(@RequestBody Cantin cantin){
-        return new ResponseEntity<>(this.cantinService.save(cantin), HttpStatus.OK);
+    public ResponseEntity<Cantin> addCantin(@RequestBody Cantin cantin) {
+        this.cantinService.save(cantin);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Cantin> deleteCantinById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Cantin> deleteCantinById(@PathVariable(name = "id") Long id) {
         Optional<Cantin> optionalCantin = this.cantinService.findById(id);
-        if (optionalCantin.isPresent()){
+        if (optionalCantin.isPresent()) {
             this.cantinService.delete(id);
-            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -5,6 +5,7 @@ import com.example.employee.Repository.ParkingTicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,13 +15,13 @@ public class ParkingTicketService implements IParkingTicketService{
     private ParkingTicketRepository parkingTicketRepository;
 
     @Override
-    public Iterable<ParkingTicket> getAll() {
+    public List<ParkingTicket> getAll() {
         return this.parkingTicketRepository.findAll();
     }
 
     @Override
-    public ParkingTicket save(ParkingTicket parkingTicket) {
-        return this.parkingTicketRepository.save(parkingTicket);
+    public void save(ParkingTicket parkingTicket) {
+        this.parkingTicketRepository.save(parkingTicket);
     }
 
     @Override

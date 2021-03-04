@@ -5,6 +5,7 @@ import com.example.employee.Repository.CantinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,13 +15,13 @@ public class CantinService implements ICantinService{
     private CantinRepository cantinRepository;
 
     @Override
-    public Iterable<Cantin> getAll() {
+    public List<Cantin> getAll() {
         return this.cantinRepository.findAll();
     }
 
     @Override
-    public Cantin save(Cantin cantin) {
-        return this.cantinRepository.save(cantin);
+    public void save(Cantin cantin) {
+        this.cantinRepository.save(cantin);
     }
 
     @Override

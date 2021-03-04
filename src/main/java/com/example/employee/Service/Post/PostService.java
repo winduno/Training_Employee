@@ -5,6 +5,7 @@ import com.example.employee.Repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,13 +15,13 @@ public class PostService implements IPostService{
     private PostRepository postRepository;
 
     @Override
-    public Iterable<Post> getAll() {
+    public List<Post> getAll() {
         return this.postRepository.findAll();
     }
 
     @Override
-    public Post save(Post post) {
-        return this.postRepository.save(post);
+    public void save(Post post) {
+        this.postRepository.save(post);
     }
 
     @Override

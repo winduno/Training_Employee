@@ -5,6 +5,7 @@ import com.example.employee.Repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,13 +15,13 @@ public class CardService implements ICardService{
     private CardRepository cardRepository;
 
     @Override
-    public Iterable<Card> getAll() {
+    public List<Card> getAll() {
         return this.cardRepository.findAll();
     }
 
     @Override
-    public Card save(Card card) {
-        return this.cardRepository.save(card);
+    public void save(Card card) {
+        this.cardRepository.save(card);
     }
 
     @Override
