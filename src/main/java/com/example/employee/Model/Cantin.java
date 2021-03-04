@@ -1,6 +1,7 @@
 package com.example.employee.Model;
 
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -28,4 +29,5 @@ public class Cantin {
 
     @OneToMany(mappedBy = "cantin")
     private Set<LunchRegisterEmployee> lunchRegisterEmployee;
+
 }
