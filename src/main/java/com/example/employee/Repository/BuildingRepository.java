@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface BuildingRepository extends JpaRepository<Building, Long> {
 
-    @Query("SELECT new com.example.employee.Model.Building(b.id, b.name, b.address) FROM Building b")
+    @Query("SELECT b.id, b.name, b.address FROM Building b")
     List<Building> getAll();
 
     @Transactional
@@ -20,7 +20,7 @@ public interface BuildingRepository extends JpaRepository<Building, Long> {
     @Query(value = "INSERT INTO building (address, name) values (:address, :name)", nativeQuery = true)
     void save(@Param("address") String address, @Param("name") String name);
 
-    @Query("SELECT new com.example.employee.Model.Building(b.id, b.name, b.address) FROM Building b where b.id = :id")
+    @Query("SELECT b.id, b.name, b.address FROM Building b where b.id = :id")
     Optional<Building> findById(@Param("id") Long id);
 
     @Modifying
