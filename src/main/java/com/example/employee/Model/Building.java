@@ -1,12 +1,10 @@
 package com.example.employee.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,11 +19,12 @@ public class Building {
     private String name;
 
     private String address;
-
-    @OneToMany(mappedBy = "building")
+    @JsonIgnore
+    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
     private Set<Employee> employees;
 
-    @OneToOne(mappedBy = "building")
+    @JsonIgnore
+    @OneToOne(mappedBy = "building", fetch = FetchType.LAZY)
     private Cantin cantin;
 
     public Building(Long id, String name, String address) {

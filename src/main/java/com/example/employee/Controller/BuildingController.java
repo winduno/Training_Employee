@@ -1,13 +1,15 @@
 package com.example.employee.Controller;
 
 import com.example.employee.Model.Building;
-import com.example.employee.Service.Building.IBuildingService;
+import com.example.employee.Model.Obj.BuildingObj;
+import com.example.employee.Service.Building.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -15,17 +17,17 @@ import java.util.Optional;
 public class BuildingController {
 
     @Autowired
-    private IBuildingService buildingService;
+    private BuildingService buildingService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Building>> getAllBuilding() {
-        return new ResponseEntity<>(this.buildingService.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<BuildingObj>> getAllBuilding() {
+        return new ResponseEntity<>(this.buildingService.getAllCustom(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Building> getBuildingById(@PathVariable(name = "id") Long id) {
-        Optional<Building> optionalBuilding = this.buildingService.findById(id);
-        return optionalBuilding.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
+    public ResponseEntity<BuildingObj> getBuildingById(@PathVariable(name = "id") Long id) {
+        Optional<BuildingObj> optionalBuildingObj = this.buildingService.getBuildingById(id);
+        return optionalBuildingObj.map(result -> new ResponseEntity<>(result, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 

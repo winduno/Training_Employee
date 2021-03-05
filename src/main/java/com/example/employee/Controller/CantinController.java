@@ -1,6 +1,8 @@
 package com.example.employee.Controller;
 
 import com.example.employee.Model.Cantin;
+import com.example.employee.Repository.CantinRepository;
+import com.example.employee.Service.Cantin.CantinService;
 import com.example.employee.Service.Cantin.ICantinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -15,7 +18,7 @@ import java.util.Optional;
 public class CantinController {
 
     @Autowired
-    private ICantinService cantinService;
+    private CantinService cantinService;
 
     @GetMapping
     public ResponseEntity<Iterable<Cantin>> getAllCantin() {

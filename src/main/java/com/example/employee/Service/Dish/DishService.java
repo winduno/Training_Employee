@@ -33,4 +33,8 @@ public class DishService implements IDishService{
     public void delete(Long id) {
         this.dishRepository.deleteById(id);
     }
+
+    public List<Dish> getDishesByMenuId(Long id){
+        return this.dishRepository.getDishByMenuId(id);
+    }
 }

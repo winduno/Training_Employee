@@ -21,7 +21,7 @@ public class CantinService implements ICantinService{
 
     @Override
     public void save(Cantin cantin) {
-        this.cantinRepository.save(cantin);
+        this.cantinRepository.save(cantin.getChefs(), cantin.getIncome(), cantin.getOutcome(), cantin.getBuilding().getId());
     }
 
     @Override

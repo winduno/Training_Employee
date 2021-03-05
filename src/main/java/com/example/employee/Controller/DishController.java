@@ -1,6 +1,7 @@
 package com.example.employee.Controller;
 
 import com.example.employee.Model.Dish;
+import com.example.employee.Service.Dish.DishService;
 import com.example.employee.Service.Dish.IDishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -15,7 +17,7 @@ import java.util.Optional;
 public class DishController {
 
     @Autowired
-    private IDishService dishService;
+    private DishService dishService;
 
     @GetMapping
     public ResponseEntity<Iterable<Dish>> getAllDish() {
@@ -44,5 +46,10 @@ public class DishController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/menu/{id}")
+    public ResponseEntity<List<Dish>> getDishesByMenuId(@PathVariable(name = "id") Long id){
+        return new ResponseEntity<>(this.dishService.getDishesByMenuId(id), HttpStatus.OK);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.employee.Repository;
 
 import com.example.employee.Model.Building;
+import com.example.employee.Model.Obj.BuildingObj;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,8 +13,11 @@ import java.util.Optional;
 
 public interface BuildingRepository extends JpaRepository<Building, Long> {
 
-    @Query("SELECT new com.example.employee.Model.Building(b.id, b.name, b.address) FROM Building b")
+    @Query(value = "SELECT b.* FROM Building b", nativeQuery = true)
     List<Building> getAll();
+
+    @Query(value = "SELECT b.id, b.name, b.address FROM Building b", nativeQuery = true)
+    List<BuildingObj> getAllCustom();
 
     @Transactional
     @Modifying
@@ -22,6 +26,9 @@ public interface BuildingRepository extends JpaRepository<Building, Long> {
 
     @Query("SELECT new com.example.employee.Model.Building(b.id, b.name, b.address) FROM Building b where b.id = :id")
     Optional<Building> findById(@Param("id") Long id);
+
+    @Query(value = "SELECT id, name, address FROM Building b where b.id = :id", nativeQuery = true)
+    Optional<BuildingObj> findBuildingById(@Param("id") Long id);
 
     @Modifying
     @Query(value = "DELETE FROM building where id = :id", nativeQuery = true)
