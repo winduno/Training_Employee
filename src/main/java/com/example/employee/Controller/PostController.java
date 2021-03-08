@@ -2,6 +2,7 @@ package com.example.employee.Controller;
 
 import com.example.employee.Model.Post;
 import com.example.employee.Service.Post.IPostService;
+import com.example.employee.Service.Post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class PostController {
 
     @Autowired
-    private IPostService postService;
+    private PostService postService;
 
     @GetMapping
     public ResponseEntity<Iterable<Post>> getAllPost() {

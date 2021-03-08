@@ -1,4 +1,4 @@
-package com.example.employee.Model.Obj;
+package com.example.employee.Model.DTO;
 
 public interface BuildingObj {
     Long getId();

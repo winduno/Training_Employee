@@ -9,27 +9,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CantinService implements ICantinService{
+public class CantinService {
 
     @Autowired
     private CantinRepository cantinRepository;
 
-    @Override
     public List<Cantin> getAll() {
         return this.cantinRepository.findAll();
     }
 
-    @Override
     public void save(Cantin cantin) {
         this.cantinRepository.save(cantin.getChefs(), cantin.getIncome(), cantin.getOutcome(), cantin.getBuilding().getId());
     }
 
-    @Override
     public Optional<Cantin> findById(Long id) {
         return this.cantinRepository.findById(id);
     }
 
-    @Override
     public void delete(Long id) {
         this.cantinRepository.deleteById(id);
     }

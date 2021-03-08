@@ -2,6 +2,7 @@ package com.example.employee.Controller;
 
 import com.example.employee.Model.ParkingTicket;
 import com.example.employee.Service.ParkingTicket.IParkingTicketService;
+import com.example.employee.Service.ParkingTicket.ParkingTicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class ParkingTicketController {
 
     @Autowired
-    private IParkingTicketService parkingTicketService;
+    private ParkingTicketService parkingTicketService;
 
     @GetMapping
     public ResponseEntity<Iterable<ParkingTicket>> getAllParkingTicket() {

@@ -1,6 +1,7 @@
 package com.example.employee.Controller;
 
 import com.example.employee.Model.Employee;
+import com.example.employee.Service.Employee.EmployeeService;
 import com.example.employee.Service.Employee.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class EmployeeController {
 
     @Autowired
-    private IEmployeeService employeeService;
+    private EmployeeService employeeService;
 
     @GetMapping
     public ResponseEntity<Iterable<Employee>> getAllEmployee() {

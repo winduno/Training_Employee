@@ -11,17 +11,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MenuService implements IMenuService{
+public class MenuService {
 
     @Autowired
     private MenuRepository menuRepository;
 
-    @Override
     public List<Menu> getAll() {
         return this.menuRepository.getAll();
     }
 
-    @Override
     public void save(Menu menu) {
         if (menu.getDate() == null){
             menu.setDate(new Date());
@@ -29,12 +27,10 @@ public class MenuService implements IMenuService{
         this.menuRepository.save(menu);
     }
 
-    @Override
     public Optional<Menu> findById(Long id) {
         return this.menuRepository.findById(id);
     }
 
-    @Override
     public void delete(Long id) {
         this.menuRepository.deleteById(id);
     }

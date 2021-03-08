@@ -1,7 +1,7 @@
 package com.example.employee.Repository;
 
 import com.example.employee.Model.Building;
-import com.example.employee.Model.Obj.BuildingObj;
+import com.example.employee.Model.DTO.BuildingObj;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,7 +16,7 @@ public interface BuildingRepository extends JpaRepository<Building, Long> {
     @Query(value = "SELECT b.* FROM Building b", nativeQuery = true)
     List<Building> getAll();
 
-    @Query(value = "SELECT b.id, b.name, b.address FROM Building b", nativeQuery = true)
+    @Query(value = "SELECT b.id, b.name FROM Building b", nativeQuery = true)
     List<BuildingObj> getAllCustom();
 
     @Transactional

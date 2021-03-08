@@ -2,6 +2,7 @@ package com.example.employee.Controller;
 
 
 import com.example.employee.Model.Guess;
+import com.example.employee.Service.Guess.GuessService;
 import com.example.employee.Service.Guess.IGuessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class GuessController {
 
     @Autowired
-    private IGuessService guessService;
+    private GuessService guessService;
 
     @GetMapping
     public ResponseEntity<Iterable<Guess>> getAllGuess() {

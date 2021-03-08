@@ -2,6 +2,7 @@ package com.example.employee.Controller;
 
 import com.example.employee.Model.LunchRegisterEmployee;
 import com.example.employee.Service.LunchRegisterEmployee.ILunchRegisterEmployeeService;
+import com.example.employee.Service.LunchRegisterEmployee.LunchRegisterEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class LunchRegisterEmployeeController {
 
     @Autowired
-    private ILunchRegisterEmployeeService lunchRegisterEmployeeService;
+    private LunchRegisterEmployeeService lunchRegisterEmployeeService;
 
     @GetMapping
     public ResponseEntity<Iterable<LunchRegisterEmployee>> getAllLunchRegisterEmployee() {

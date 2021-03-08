@@ -9,27 +9,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ShipperService implements IShipperService{
+public class ShipperService {
 
     @Autowired
     private ShipperRepository shipperRepository;
 
-    @Override
     public List<Shipper> getAll() {
         return this.shipperRepository.findAll();
     }
 
-    @Override
     public void save(Shipper shipper) {
         this.shipperRepository.save(shipper);
     }
 
-    @Override
     public Optional<Shipper> findById(Long id) {
         return this.shipperRepository.findById(id);
     }
 
-    @Override
     public void delete(Long id) {
         this.shipperRepository.deleteById(id);
     }

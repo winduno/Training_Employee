@@ -1,7 +1,7 @@
 package com.example.employee.Controller;
 
 import com.example.employee.Model.Building;
-import com.example.employee.Model.Obj.BuildingObj;
+import com.example.employee.Model.DTO.BuildingObj;
 import com.example.employee.Service.Building.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -2,6 +2,7 @@ package com.example.employee.Controller;
 
 import com.example.employee.Model.Shipper;
 import com.example.employee.Service.Shipper.IShipperService;
+import com.example.employee.Service.Shipper.ShipperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class ShipperController {
 
     @Autowired
-    private IShipperService shipperService;
+    private ShipperService shipperService;
 
     @GetMapping
     public ResponseEntity<Iterable<Shipper>> getAllShipper() {

@@ -9,27 +9,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class GuessService implements IGuessService{
+public class GuessService {
 
     @Autowired
     private GuessRepository guessRepository;
 
-    @Override
     public List<Guess> getAll() {
         return this.guessRepository.findAll();
     }
 
-    @Override
     public void save(Guess guess) {
         this.guessRepository.save(guess);
     }
 
-    @Override
     public Optional<Guess> findById(Long id) {
         return this.guessRepository.findById(id);
     }
 
-    @Override
     public void delete(Long id) {
         this.guessRepository.deleteById(id);
     }

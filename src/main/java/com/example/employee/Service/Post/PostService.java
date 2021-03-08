@@ -9,27 +9,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PostService implements IPostService{
+public class PostService {
 
     @Autowired
     private PostRepository postRepository;
 
-    @Override
     public List<Post> getAll() {
         return this.postRepository.findAll();
     }
 
-    @Override
     public void save(Post post) {
         this.postRepository.save(post);
     }
 
-    @Override
     public Optional<Post> findById(Long id) {
         return this.postRepository.findById(id);
     }
 
-    @Override
     public void delete(Long id) {
         this.postRepository.deleteById(id);
     }

@@ -1,6 +1,7 @@
 package com.example.employee.Controller;
 
 import com.example.employee.Model.Card;
+import com.example.employee.Service.Card.CardService;
 import com.example.employee.Service.Card.ICardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class CardController {
 
     @Autowired
-    private ICardService cardService;
+    private CardService cardService;
 
     @GetMapping
     public ResponseEntity<Iterable<Card>> getAllCard() {
