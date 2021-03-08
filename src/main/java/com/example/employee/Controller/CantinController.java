@@ -1,6 +1,7 @@
 package com.example.employee.Controller;
 
 import com.example.employee.Model.Cantin;
+import com.example.employee.Model.DTO.CantinObj;
 import com.example.employee.Repository.CantinRepository;
 import com.example.employee.Service.Cantin.CantinService;
 import com.example.employee.Service.Cantin.ICantinService;
@@ -21,7 +22,7 @@ public class CantinController {
     private CantinService cantinService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Cantin>> getAllCantin() {
+    public ResponseEntity<Iterable<CantinObj>> getAllCantin() {
         return new ResponseEntity<>(this.cantinService.getAll(), HttpStatus.OK);
     }
 

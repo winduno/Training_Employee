@@ -16,7 +16,7 @@ public interface BuildingRepository extends JpaRepository<Building, Long> {
     @Query("SELECT new com.example.employee.Model.Building(b.id, b.name, b.address) FROM Building b")
     List<Building> getAll();
 
-    @Query(value = "SELECT b.id, b.name FROM Building b", nativeQuery = true)
+    @Query(value = "SELECT * FROM Building b", nativeQuery = true)
     List<BuildingObj> getAllCustom();
 
     @Transactional
@@ -27,7 +27,7 @@ public interface BuildingRepository extends JpaRepository<Building, Long> {
     @Query("SELECT new com.example.employee.Model.Building(b.id, b.name, b.address) FROM Building b where b.id = :id")
     Optional<Building> findById(@Param("id") Long id);
 
-    @Query(value = "SELECT id, name, address FROM Building b where b.id = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM Building b where b.id = :id", nativeQuery = true)
     Optional<BuildingObj> findBuildingById(@Param("id") Long id);
 
     @Modifying

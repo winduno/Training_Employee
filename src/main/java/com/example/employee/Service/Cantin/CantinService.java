@@ -1,6 +1,7 @@
 package com.example.employee.Service.Cantin;
 
 import com.example.employee.Model.Cantin;
+import com.example.employee.Model.DTO.CantinObj;
 import com.example.employee.Repository.CantinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ public class CantinService {
     @Autowired
     private CantinRepository cantinRepository;
 
-    public List<Cantin> getAll() {
-        return this.cantinRepository.findAll();
+    public List<CantinObj> getAll() {
+        return this.cantinRepository.getAllCantinCustom();
     }
 
     public void save(Cantin cantin) {
