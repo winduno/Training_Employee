@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface BuildingRepository extends JpaRepository<Building, Long> {
 
-    @Query(value = "SELECT b.* FROM Building b", nativeQuery = true)
+    @Query("SELECT new com.example.employee.Model.Building(b.id, b.name, b.address) FROM Building b")
     List<Building> getAll();
 
     @Query(value = "SELECT b.id, b.name FROM Building b", nativeQuery = true)
